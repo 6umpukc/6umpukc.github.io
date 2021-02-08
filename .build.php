@@ -1,12 +1,24 @@
 <?php
 
-$dest = 'index.html';
+$srcPath = __DIR__ . '/';
+$destPath = __DIR__ . '/';
 
-$url = 'https://whateveruse.bitrix24.site/';
+$url = 'https://whateveruse.bitrix24.site';
+$pages = [
+	'/' => 'index.html',
+];
 
-$content = file_get_contents($url);
+$counterContent = file_get_contents($srcPath . '_counters.html');
 
-$content = str_replace('<head>', '<head>
-	<base href="' . $url . '">', $content);
+foreach ($pages as $pageUri => $page)
+{
+	$content = file_get_contents($url . $pageUri);
 
-file_put_contents(__DIR__ . '/' . $dest, $content);
+	// fix urls
+	$content = str_replace('<head>', '<head>' . "\n" . '<base href="' . $url . '">', $content);
+
+	// add counters
+	$content = str_replace('</body>', $counterContent . "\n" .  '</body>', $content);
+
+	file_put_contents($destPath . $page, $content);
+}
