@@ -3,7 +3,7 @@
 $srcPath = __DIR__ . '/';
 $destPath = __DIR__ . '/';
 
-$url = 'https://whateveruse.bitrix24.site';
+$url = 'https://6umpukc.bitrix24.site';
 $pages = [
 	'/' => 'index.html',
 ];
