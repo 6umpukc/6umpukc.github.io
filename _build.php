@@ -20,5 +20,7 @@ foreach ($pages as $pageUri => $page)
 	// add counters
 	$content = str_replace('</body>', $counterContent . "\n" .  '</body>', $content);
 
+	//TODO!!! копировать ресуры
+	
 	file_put_contents($destPath . $page, $content);
 }
